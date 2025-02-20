@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table tennis stats</title>
+</head>
+<body>
+    <script>
+        async function fetchData() {
+            const response = await fetch('/api/scrape');
+            const data = await response.json();
+            
+            const h1 = document.createElement('h1');
+            h1.textContent = data.slice(0,2).join(' ');
+            document.body.insertBefore(h1, document.querySelector('nav,h2'));
+
+            const h2 = document.createElement('h2');
+            h2.textContent = data[2];
+            document.body.insertBefore(h2, document.querySelector('nav'));
+        }
+
+        fetchData();
+    </script>
+    <nav>
+        <ul>
+            <li><a href="/index.html">Kaart</a></li>
+            <li><a href="/html/vttl.html">Vttl</a></li>
+            <li><a href="/html/sporta.html">Sporta</a></li>
+        </ul>
+    </nav>
+</body>
+</html>
